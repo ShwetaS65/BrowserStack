@@ -39,6 +39,25 @@ jobs:
         with:
           username:  ${{ secrets.shwetasaxena_cxS08u }}
           access-key: ${{ secrets.syfhutjAeF52yZ2s6rWw }}
-          build-name: 'BUILD_INFO'
-          project-name: 'REPO_NAME'
-          run: |
+      - name: 'BrowserStack Local Tunnel Setup'  
+        uses: browserstack/github-actions/setup-local@master
+        with:
+          local-testing: start
+          local-identifier: random
+
+      - name: 'Checkout the repository'
+        uses: actions/checkout@v2
+
+      - name: 'Building web application to be tested'
+        run: npm install
+
+      - name: 'Running application under test'
+        run: ./node_modules/.bin/http-server -p 8099 &
+
+      - name: 'Running test on BrowserStack'  
+        run: node index.js  # See sample test script above
+
+      - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
+        uses: browserstack/github-actions/setup-local@master
+        with:
+          local-testing: stop
