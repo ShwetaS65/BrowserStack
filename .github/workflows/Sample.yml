@@ -34,3 +34,10 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          - name: 'BrowserStack Env Setup'
+        uses: 'browserstack/github-actions/setup-env@master'
+        with:
+          username:  ${{ secrets.shwetasaxena_cxS08u }}
+          access-key: ${{ secrets.syfhutjAeF52yZ2s6rWw }}
+          build-name: 'BUILD_INFO'
+          project-name: 'REPO_NAME'
