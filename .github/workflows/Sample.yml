@@ -41,3 +41,4 @@ jobs:
           access-key: ${{ secrets.syfhutjAeF52yZ2s6rWw }}
           build-name: 'BUILD_INFO'
           project-name: 'REPO_NAME'
+          run: |
